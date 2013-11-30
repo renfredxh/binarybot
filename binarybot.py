@@ -80,7 +80,7 @@ def find_comments(r, subreddit, replied_to):
 def main():
     r = praw.Reddit('Binary conversion bot by u/SeaCowVengeance v 0.2.'
                     'url: https://github.com/RenfredH04/binarybot')
-    r.login(USERNAME)
+    r.login(USERNAME, PASSWORD)
     # List of subreddits that will be searched
     subreddits = ['test','funny','AdviceAnimals','ProgrammerHumor','binary']
     # Load in previous replied ids
@@ -97,6 +97,7 @@ def main():
         time.sleep(60)
    
 USERNAME = 'BinaryConversionBot'
+PASSWORD = ''
 
 if __name__ == '__main__':
     main()
