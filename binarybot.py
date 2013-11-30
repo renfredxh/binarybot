@@ -40,6 +40,9 @@ def parse_binary(text):
     
 def reply_to(comment, text):
     t = time.strftime("%m-%d %H:%M:%S", time.localtime())
+    # Truncate message if it exceeds max character limit.
+    if len(text) >= 10000:
+        text = text[:9995] + '...'
     try:
         comment.reply(text)
         with open('bot.log', 'a') as f:
