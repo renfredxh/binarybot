@@ -53,7 +53,12 @@ def reply_to(comment, text):
               'Sleeping for {} seconds'.format(t, e.sleep_time))
         # Wait and try again.
         time.sleep(e.sleep_time)
-        reply_to(comment, text)   
+        reply_to(comment, text)
+    # Handle and log miscellaneous API exceptions
+    except praw.errors.APIException as e:
+        with open('bot.log', 'a') as f:
+            f.write(comment.id + '\n')
+        print("{}: Exception on comment {}, {}".format(t, comment.id, e))
 
 def find_comments(r, subreddit, replied_to):
     """Find comments that contain valid binary strings and reply to them
