@@ -89,12 +89,10 @@ def main():
             replied_to = set([id.rstrip() for id in f])
     except FileNotFoundError:
         replied_to = set()
-    # Find new comments every minute 
-    while True:
-        for subreddit in subreddits:
-            find_comments(r, subreddit, replied_to)
-            time.sleep(15)
-        time.sleep(60)
+    # Find new comments 
+    for subreddit in subreddits:
+        find_comments(r, subreddit, replied_to)
+        time.sleep(15)
    
 USERNAME = 'BinaryConversionBot'
 PASSWORD = ''
