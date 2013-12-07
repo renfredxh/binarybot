@@ -74,8 +74,10 @@ def find_comments(r, subreddit, replied_to):
             bin_strs = parse_binary(comment.body)
             reply = ''
             for bin_str in bin_strs:
-                reply += '> {}\n\n'.format(bin_str) 
-                reply += bin2ascii(bin_str) + '\n'
+                ascii = bin2ascii(bin_str)
+                if ascii != '':
+                    reply += '> {}\n\n'.format(bin_str) 
+                    reply += ascii + '\n'
             if reply:
                 reply_to(comment, reply)
                 replied_to.add(comment.id)
