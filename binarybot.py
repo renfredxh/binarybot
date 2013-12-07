@@ -19,7 +19,10 @@ def bin2ascii(bin_str):
     chars = [bin_str[i:i+8] for i in range(0,len(bin_str),8)]
     converted = ''
     for byte in chars:
-        converted += chr(int(byte, 2))
+        code = int(byte, 2)
+        # Only include printed characters
+        if code > 31:
+            converted += chr(int(byte, 2))
     return converted
 
 def parse_binary(text):
