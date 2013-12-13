@@ -80,7 +80,8 @@ def find_comments(r, subreddit, replied_to):
             reply = ''
             for bin_str in bin_strs:
                 ascii = bin2ascii(bin_str)
-                if ascii != '':
+                # Don't reply to empty or whitespace-only comments
+                if ascii != '' and not ascii.isspace():
                     reply += '> {}\n\n'.format(bin_str) 
                     reply += ascii + '\n'
             if reply:
