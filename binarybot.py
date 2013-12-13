@@ -10,6 +10,11 @@ def bin2ascii(bin_str):
     >>> bin2ascii('011001100110111101101111')
     'foo'
     """
+    # Special non-printed ascii characters will not be included.
+    # This includes chars 0 - 32 (excluding 9 and 10 which are \t and \n)
+    # and characters 127 - 161 and 173.
+    bad_chars = ([i for i in range(0,32) if i not in [9, 10]] + 
+                 [i for i in range(127,161)] + [173])
     # ASCII characters are 8-bits long each, so if the length of the string
     # is not divisible by 8, leading zeros are added for padding.
     if len(bin_str) % 8 != 0:
@@ -21,7 +26,7 @@ def bin2ascii(bin_str):
     for byte in chars:
         code = int(byte, 2)
         # Only include printed characters
-        if code > 31:
+        if code not in bad_chars:
             converted += chr(int(byte, 2))
     return converted
 
